@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use PDF;
 
 class ContactController extends Controller
 {
@@ -18,6 +19,19 @@ class ContactController extends Controller
 
         return view('contacts.index', compact('contacts'));
     }
+
+    // Generate PDF
+    public function createPDF() {
+        // retreive all records from db
+        $contact = Contact::all();
+  
+        // share data to view
+        view()->share('contacts',$contact);
+        $pdf = PDF::loadView('pdf_view', $contact);
+  
+        // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
+      }
 
     /**
      * Show the form for creating a new resource.
@@ -118,4 +132,6 @@ class ContactController extends Controller
 
         return redirect('/contacts')->with('success', 'Contact deleted!');
     }
+
+    
 }

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     use HasFactory;
+    //public $table = 'contacts';
+    //protected $primaryKey = 'id';
 
     protected $fillable = [
         'first_name',

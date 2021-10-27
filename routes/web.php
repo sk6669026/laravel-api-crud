@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ShowController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,6 @@ Route::get('/', function () {
 });
 
 Route::resource('contacts', ContactController::class);
+Route::get('/contact/pdf', [ContactController::class, 'createPDF']);
+Route::get('/search',[ShowController::class, 'search']);
+
